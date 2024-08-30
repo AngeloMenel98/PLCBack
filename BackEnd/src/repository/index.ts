@@ -1,2 +1,5 @@
 import { MachineRecRepository } from "./machineRec.repository";
-export { MachineRecRepository };
+import { MachineRepository } from "./machine.repository";
+import { UserRepository } from "./user.repository";
+
+export { MachineRecRepository, MachineRepository, UserRepository };

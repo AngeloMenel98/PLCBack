@@ -1,19 +1,18 @@
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
-import { isServiceCodeError, isUserServiceError } from "../errors/errors";
-import { MachineRecService } from "../services";
-import { MachineRec } from "../entity";
+import { isServiceCodeError } from "../errors/errors";
+import { MachineService } from "../services";
+import { Machine } from "../entity";
 
-export class MachineRecController {
-  private machineRecService: MachineRecService;
+export class MachineController {
+  private machineService: MachineService;
   constructor() {
-    this.machineRecService = new MachineRecService();
+    this.machineService = new MachineService();
   }
 
-  async create(req: Request, res: Response) {
+  async add(req: Request, res: Response) {
     try {
       const errors = validationResult(req);
-
       if (!errors.isEmpty()) {
         return res.status(400).json({
           error: errors.array().map((error) => ({
@@ -21,13 +20,11 @@ export class MachineRecController {
           })),
         });
       }
-      const machineRecs = req.body;
+      const machine = req.body;
 
-      const machRecs: MachineRec[] = await this.machineRecService.create(
-        machineRecs
-      );
+      const resMach: Machine = await this.machineService.add(machine);
 
-      res.status(201).json(machRecs);
+      res.status(201).json(resMach);
     } catch (e) {
       console.error("Error creating records:", e);
 
@@ -40,4 +37,4 @@ export class MachineRecController {
   }
 }
 
-export default new MachineRecController();
+export default new MachineController();

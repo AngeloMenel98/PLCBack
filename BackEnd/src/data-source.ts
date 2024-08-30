@@ -1,7 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { MachineRec } from "./entity/MachineRec";
-import { Machine } from "./entity/Machine";
+import { Machine, MachineRec, User, Request } from "./entity";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -12,7 +11,7 @@ export const AppDataSource = new DataSource({
   database: "plc_sensors",
   synchronize: true,
   logging: false,
-  entities: [MachineRec, Machine],
+  entities: [MachineRec, Machine, User, Request],
   migrations: [],
   subscribers: [],
 });

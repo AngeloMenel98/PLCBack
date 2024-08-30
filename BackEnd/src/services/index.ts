@@ -1,3 +1,5 @@
 import { MachineRecService } from "./machineRecService";
+import { MachineService } from "./machineService";
+import { UserService } from "./userService";
 
-export { MachineRecService };
+export { MachineRecService, MachineService, UserService };
